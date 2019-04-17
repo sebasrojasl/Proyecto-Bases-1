@@ -1,0 +1,17 @@
+CREATE USER ge
+    IDENTIFIED BY ge
+    DEFAULT TABLESPACE ge_data
+    QUOTA 10M ON ge_data
+    TEMPORARY TABLESPACE temp
+    QUOTA 5M ON system ;
+
+----Crea el usuraio ge
+
+CREATE USER se
+    IDENTIFIED BY se
+    DEFAULT TABLESPACE se_data
+    QUOTA 10M ON se_data
+    TEMPORARY TABLESPACE temp
+    QUOTA 5M ON system ;
+
+----Crea el usuraio se
