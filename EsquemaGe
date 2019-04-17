@@ -16,4 +16,24 @@ CREATE TABLESPACE ge_Data
     NEXT 512k
     MAXSIZE 200M;
 
-----Crea el esquema ge
+----Crea el esquema se
+
+CREATE TABLESPACE se_Ind
+DATAFILE 'C:\app\sebas\oradata\dbprueba\seind01.dbf'	
+	SIZE 10M
+	REUSE
+	AUTOEXTEND ON
+	NEXT 512k
+	MAXSIZE 200M;
+
+
+
+CREATE TABLESPACE se_Data
+	DATAFILE 'C:\app\sebas\oradata\dbprueba\sedata01.dbf'
+	SIZE 10M 
+	REUSE
+	AUTOEXTEND ON
+	NEXT 512k
+	MAXSIZE 200M;
+
+----Crea el esquema se
