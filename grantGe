@@ -2,6 +2,8 @@ GRANT CONNECT TO ge;
 --Permite la conexión del usuario
 GRANT UNLIMITED TABLESPACE TO ge;
 --Permite la creación de tablas
+grant create table to ge;
+----Permite la creación de tablas
 grant CREATE PROCEDURE to ge;
 --Permite la creación de procedimientos
 grant create sequence to ge;
