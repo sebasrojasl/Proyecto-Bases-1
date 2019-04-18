@@ -1,0 +1,30 @@
+create table comunidad
+(
+    id_comunidad     number(10) ,
+    comunidad_nombre varchar2(20) constraint comunidad_nombre_nn not null
+	---Campos de Auditoria
+    Fec_creacion                    DATE CONSTRAINT comunidad_Fec_creacion_nn NOT NULL,
+    Usuario_creacion                VARCHAR2(10) CONSTRAINT comunidad_Usuario_creacion_nn NOT NULL,
+    Fec_ultima_modificacion         DATE,
+    Usuario_ultima_modificacion     VARCHAR2(10)
+);
+
+---Crea la tabla de la comunidad
+
+CREATE SEQUENCE  S_comunidad 
+MINVALUE 1 
+MAXVALUE 1000000 
+INCREMENT BY 1 
+START WITH 1 
+NOCACHE
+NOCYCLE;
+
+---Crea la secuencia de id_comunidad
+
+alter table comunidad
+	add constraint pk_comunidad primary key (id_comunidad)
+      	using index
+      	tablespace un_ind pctfree 20
+      	storage (initial 10K NEXT 10K pctincrease 0);
+
+---Crea la llave primaria de comunidad
