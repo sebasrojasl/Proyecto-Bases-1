@@ -1,0 +1,31 @@
+create table nivelAcceso
+(
+    id_nivelAcceso     number(10) ,
+    nivelAcceso_nombre varchar2(20) constraint nivelAcceso_nombre_nn not null,
+	---Campos de Auditoria
+    Fec_creacion                    DATE CONSTRAINT nivelAcceso_Fec_creacion_nn NOT NULL,
+    Usuario_creacion                VARCHAR2(10) CONSTRAINT nivelAcceso_creacion_nn NOT NULL,
+    Fec_ultima_modificacion         DATE,
+    Usuario_ultima_modificacion     VARCHAR2(10)
+    --- Crea la tabla nivelAcceso  
+);
+
+  
+CREATE SEQUENCE  S_NivelAcceso  
+MINVALUE 1 
+MAXVALUE 1000000 
+INCREMENT BY 1 
+START WITH 1 
+NOCACHE
+NOCYCLE;
+
+---Crea la secuencia nivelAcceso
+
+alter table nivelAcceso
+	add constraint pk_nivelAcceso primary key (id_nivelAcceso)
+      	using index
+      	tablespace un_ind pctfree 20
+      	storage (initial 10K NEXT 10K pctincrease 0);
+
+
+---Crea la llave primaria para nivelAcceso
