@@ -1,6 +1,6 @@
 create table nivelAcceso
 (
-    id_nivelAcceso     number(10) ,
+    id_nivel_Acceso     number(10) ,
     nivelAcceso_nombre varchar2(20) constraint nivelAcceso_nombre_nn not null,
 	---Campos de Auditoria
     Fec_creacion                    DATE CONSTRAINT nivelAcceso_Fec_creacion_nn NOT NULL,
@@ -22,7 +22,7 @@ NOCYCLE;
 ---Crea la secuencia nivelAcceso
 
 alter table nivelAcceso
-	add constraint pk_nivelAcceso primary key (id_nivelAcceso)
+	add constraint pk_nivelAcceso primary key (id_nivel_Acceso)
       	using index
       	tablespace un_ind pctfree 20
       	storage (initial 10K NEXT 10K pctincrease 0);
