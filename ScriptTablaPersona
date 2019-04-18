@@ -1,0 +1,37 @@
+CREATE TABLE Persona(
+    id_persona          NUMBER(10),
+    nombre              VARCHAR2(20) CONSTRAINT persona_nombre_nn NOT NULL,
+    apellidos           VARCHAR2(50) CONSTRAINT persona_apellidos_nn NOT NULL,
+    nacimiento          DATE CONSTRAINT persona_nacimiento_nn NOT NULL,
+    foto                VARCHAR2(15) CONSTRAINT foto_nacimiento_nn NOT null,
+    direccion           VARCHAR2(150) CONSTRAINT persona_direccion_nn NOT NULL,
+    correo              VARCHAR2(40) CONSTRAINT persona_correo_nn NOT NULL,
+                        CONSTRAINT persona_correo_uk UNIQUE(correo),
+    id_genero           NUMBER(10),
+    id_comunidad        NUMBER(10),
+    Fec_creacion        DATE CONSTRAINT persona_fechacreacion_nn NOT NULL,
+    Usuario_creacion    VARCHAR2(10) CONSTRAINT persona_usuariocreacion_nn NOT NULL,
+    Fec_ultima_modificacion DATE,
+    Usuario_ultima_modificacion VARCHAR2(10)
+);
+
+CREATE SEQUENCE S_persona
+START WITH 1
+INCREMENT BY 1
+MINVALUE 0
+MAXVALUE 10000000
+NOCACHE
+NOCYCLE;
+
+ALTER TABLE persona
+    ADD CONSTRAINT pk_persona PRIMARY KEY (id_persona)
+    USING INDEX TABLESPACE ge_Ind PCTFREE 20
+    STORAGE (INITIAL 10k NEXT 10k PCTINCREASE 0);
+
+ALTER TABLE persona
+    ADD CONSTRAINT fk_persona_genero FOREIGN KEY (id_genero) 
+    REFERENCES genero(id_genero);
+
+ALTER TABLE persona
+    ADD CONSTRAINT fk_persona_comunidad FOREIGN KEY (id_comunidad)
+    REFERENCES comunidad(id_comunidad);
