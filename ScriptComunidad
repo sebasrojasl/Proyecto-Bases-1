@@ -1,9 +1,9 @@
 create table comunidad
 (
     id_comunidad     number(10) ,
-    comunidad_nombre varchar2(20) constraint comunidad_nombre_nn not null
+    comunidad_nombre varchar2(20) constraint comunidad_nombre_nn not null,
 	---Campos de Auditoria
-    Fec_creacion                    DATE CONSTRAINT comunidad_Fec_creacion_nn NOT NULL,
+    Fec_creacion         DATE CONSTRAINT comunidad_Fec_creacion_nn NOT NULL,
     Usuario_creacion                VARCHAR2(10) CONSTRAINT comunidad_Usuario_creacion_nn NOT NULL,
     Fec_ultima_modificacion         DATE,
     Usuario_ultima_modificacion     VARCHAR2(10)
