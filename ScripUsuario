@@ -4,7 +4,7 @@ CREATE TABLE usuario(
     id_usuario          NUMBER(10),
     nombre_usuario      VARCHAR2(30) CONSTRAINT usuario_nombre_usuario_nn NOT NULL,
                         CONSTRAINT usuario_nombre_usuario_uk UNIQUE(nombre_usuario),
-    clave               VARCHAR2(30) CONSTRAINT usuario_clave_nn NOT NULL,
+    clave               VARCHAR2(256) CONSTRAINT usuario_clave_nn NOT NULL,
     id_persona          NUMBER(10),
     id_nivel_acceso     NUMBER(10),
     Fec_creacion        DATE CONSTRAINT usuario_fec_creacion_nn NOT NULL,
