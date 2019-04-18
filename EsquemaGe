@@ -5,7 +5,7 @@ DATAFILE 'C:\app\sebas\oradata\dbprueba\geind01.dbf'
     AUTOEXTEND ON
     NEXT 512k
     MAXSIZE 200M;
-----Crea el esquema ge    
+----Crea el tablespace de indices para el esquema ge    
     
 
 
@@ -18,3 +18,4 @@ CREATE TABLESPACE ge_Data
     NEXT 512k
     MAXSIZE 200M;
 
+----Crea el tablespace de tablas para el esquema ge
