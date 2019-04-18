@@ -1,0 +1,40 @@
+create table identificacion
+(
+    id_identificacion     number(10) ,
+    tipo_identificacion   varchar2(20) constraint identificacion_tipo_nn not null,
+    valor     		      number(10) constraint valor_identificacion_nn not null,
+    id_persona            number(10) constraint id_persona_identificacion_nn not null,
+	---Campos de Auditoria
+    Fec_creacion                    DATE CONSTRAINT ident_Fec_creacion_nn NOT NULL,
+    Usuario_creacion                VARCHAR2(10) CONSTRAINT ident_Usuario_creacion_nn NOT NULL,
+    Fec_ultima_modificacion         DATE,
+    Usuario_ultima_modificacion     VARCHAR2(10)
+);
+
+---Crea la tabla de la identificacion
+
+CREATE SEQUENCE  S_identificacion 
+MINVALUE 1 
+MAXVALUE 1000000 
+INCREMENT BY 1 
+START WITH 1 
+NOCACHE
+NOCYCLE;
+
+---Crea la secuencia de id_identifiacion
+
+alter table identificacion 
+	add constraint pk_identificacion primary key (id_identificacion)
+      	using index
+      	tablespace un_ind pctfree 20
+      	storage (initial 10K NEXT 10K pctincrease 0);
+
+---Crea la llave primaria de la tabla identificacion
+
+ALTER TABLE identificacion
+    ADD CONSTRAINT fk_identificacion_persona FOREIGN KEY (id_persona)
+    REFERENCES Persona(id_persona);
+
+---Crea la llave foranea entre la tabla persona y la tabla identificacion
+    
+    
