@@ -1,0 +1,18 @@
+--Triggers para el update e insert en Bitacora
+create or replace trigger se.antesInsertBitacora
+Before insert
+ON se.ge_bitacora
+for each row
+BEGIN
+    :new.fec_creacion:= sysdate;
+    :new.usuario_creacion:= USER;
+END antesInsertBitacora;
+
+create or replace trigger se.antesUpdateBitacora
+Before update
+ON se.ge_bitacora
+for each row
+BEGIN
+    :new.fec_ultima_modificacion:= sysdate;
+    :new.usuario_ultima_modificacion:= USER;
+END antesUpdateBitacora;
