@@ -8,3 +8,4 @@ grant CREATE PROCEDURE to ge;
 --Permite la creación de procedimientos
 grant create sequence to ge;
 --Permite la creación de secuencias
+grant create trigger to ge;
