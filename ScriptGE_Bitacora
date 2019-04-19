@@ -1,0 +1,20 @@
+--Se crea desde el esquema se
+create table ge_bitacora
+(
+       Nombre_esquema VARCHAR2(10) constraint Nombre_esquema_nn not null,
+       Nombre_tabla VARCHAR2(30) constraint Nombre_tabla_nn not null,
+       Nombre_columna VARCHAR2(30) constraint Nombre_columna_nn not null,
+       Valor_previo VARCHAR2(100),
+       Valor_actual VARCHAR2(100) constraint Valor_actual_nn not null,
+       fec_creacion DATE constraint bita_fec_creacion_nn not null, 
+        usuario_creacion VARCHAR2(10) constraint bita_usuar_creacion_nn not null, 
+        fec_ultima_modificacion DATE, 
+        usuario_ultima_modificacion VARCHAR2(10), 
+        ID_Bitacora NUMBER(9,0),
+        constraint pk_bitacora primary key (id_bitacora)
+            using index
+            tablespace ge_ind pctfree 20
+            storage (initial 10K NEXT 10K pctincrease 0)            
+);
+
+grant insert, delete, update, select on ge_bitacora to ge;
