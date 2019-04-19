@@ -22,18 +22,18 @@ BEGIN
 END antesUpdateClave;
 
 --Triggers AccidenteTransito
-create or replace trigger antesInsertAccidenteTransito
+create or replace trigger antesInsertAccidente_Transito
 Before insert
-ON AccidenteTransito
+ON Accidente_Transito
 for each row
 BEGIN
     :new.fec_creacion:= sysdate;
     :new.usuario_creacion:= USER;
 END antesInsertAccidenteTransito;
 
-create or replace trigger antesUpdateAccidenteTransito
+create or replace trigger antesUpdateAccidente_Transito
 Before update
-ON AccidenteTransito
+ON Accidente_Transito
 for each row
 BEGIN
     :new.fec_ultima_modificacion:= sysdate;
