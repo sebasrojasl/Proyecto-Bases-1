@@ -1,0 +1,504 @@
+--A partir de acá se crean en el esquema ge
+--Se crea secuencia para el id de bitacora
+CREATE SEQUENCE s_bitacora
+  MINVALUE 0
+  MAXVALUE 100000000
+  START WITH 1
+  INCREMENT BY 1
+  NOCACHE
+  NOCYCLE;
+  
+--Trigger para el cambio de contraseña, así queda guardado en la bitácora cada vez que se cambia la contraseña
+create or replace trigger antesUpdateClave
+before insert or update of clave
+on usuario
+for each row
+BEGIN
+    INSERT INTO SE.ge_bitacora
+        (id_bitacora, nombre_esquema, nombre_tabla,
+        nombre_columna, valor_previo, valor_actual)
+    VALUES(S_bitacora.nextval, 'GE', 'USUARIO', 
+    'CLAVE', :old.clave, :new.clave);
+END antesUpdateClave;
+
+--Triggers AccidenteTransito
+create or replace trigger antesInsertAccidenteTransito
+Before insert
+ON AccidenteTransito
+for each row
+BEGIN
+    :new.fec_creacion:= sysdate;
+    :new.usuario_creacion:= USER;
+END antesInsertAccidenteTransito;
+
+create or replace trigger antesUpdateAccidenteTransito
+Before update
+ON AccidenteTransito
+for each row
+BEGIN
+    :new.fec_ultima_modificacion:= sysdate;
+    :new.usuario_ultima_modificacion:= USER;
+END antesUpdateAccidenteTransito;
+
+--Triggers Agresor
+create or replace trigger antesInsertAgresor
+Before insert
+ON Agresor
+for each row
+BEGIN
+    :new.fec_creacion:= sysdate;
+    :new.usuario_creacion:= USER;
+END antesInsertAgresor;
+
+create or replace trigger antesUpdateAgresor
+Before update
+ON Agresor
+for each row
+BEGIN
+    :new.fec_ultima_modificacion:= sysdate;
+    :new.usuario_ultima_modificacion:= USER;
+END antesUpdateAgresor;
+
+--Triggers Agresor_X_delito
+create or replace trigger antesInsertAgresor_X_Delito
+Before insert
+ON Agresor_X_delito
+for each row
+BEGIN
+    :new.fec_creacion:= sysdate;
+    :new.usuario_creacion:= USER;
+END antesInsertAgresor_X_Delito;
+
+create or replace trigger antesUpdateAgresor_X_Delito
+Before update
+ON Agresor_X_delito
+for each row
+BEGIN
+    :new.fec_ultima_modificacion:= sysdate;
+    :new.usuario_ultima_modificacion:= USER;
+END antesUpdateAgresor_X_Delito;
+
+
+--Triggers Canton
+create or replace trigger antesInsertCanton
+Before insert
+ON Canton
+for each row
+BEGIN
+    :new.fec_creacion:= sysdate;
+    :new.usuario_creacion:= USER;
+END antesInsertCanton;
+
+create or replace trigger antesUpdateCanton
+Before update
+ON Canton
+for each row
+BEGIN
+    :new.fec_ultima_modificacion:= sysdate;
+    :new.usuario_ultima_modificacion:= USER;
+END antesUpdateCanton;
+
+--Triggers Clasificacion_Delito
+create or replace trigger antesInsertClasific_Delito
+Before insert
+ON Clasificacion_delito
+for each row
+BEGIN
+    :new.fec_creacion:= sysdate;
+    :new.usuario_creacion:= USER;
+END antesInsertClasific_Delito;
+
+create or replace trigger antesUpdateClasific_Delito
+Before update
+ON Clasificacion_Delito
+for each row
+BEGIN
+    :new.fec_ultima_modificacion:= sysdate;
+    :new.usuario_ultima_modificacion:= USER;
+END antesUpdateClasific_Delito;
+
+--Triggers Clasificacion_Noticia
+create or replace trigger antesInsertClasific_Noticia
+Before insert
+ON Clasificacion_Noticia
+for each row
+BEGIN
+    :new.fec_creacion:= sysdate;
+    :new.usuario_creacion:= USER;
+END antesInsertClasific_Noticia;
+
+create or replace trigger antesUpdateClasific_Noticia
+Before update
+ON Clasificacion_Noticia
+for each row
+BEGIN
+    :new.fec_ultima_modificacion:= sysdate;
+    :new.usuario_ultima_modificacion:= USER;
+END antesUpdateClasific_Noticia;
+
+--Triggers Comunidad
+create or replace trigger antesInsertComunidad
+Before insert
+ON Comunidad
+for each row
+BEGIN
+    :new.fec_creacion:= sysdate;
+    :new.usuario_creacion:= USER;
+END antesInsertComunidad;
+
+create or replace trigger antesUpdateComunidad
+Before update
+ON Comunidad
+for each row
+BEGIN
+    :new.fec_ultima_modificacion:= sysdate;
+    :new.usuario_ultima_modificacion:= USER;
+END antesUpdateComunidad;
+
+--Triggers Comunidad_De_Accidente
+create or replace trigger antesInsertComunidad_de_Acci
+Before insert
+ON Comunidad_de_accidente
+for each row
+BEGIN
+    :new.fec_creacion:= sysdate;
+    :new.usuario_creacion:= USER;
+END antesInsertComunidad_de_Acci;
+
+create or replace trigger antesUpdateComunidad_de_Acci
+Before update
+ON Comunidad_de_accidente
+for each row
+BEGIN
+    :new.fec_ultima_modificacion:= sysdate;
+    :new.usuario_ultima_modificacion:= USER;
+END antesUpdateComunidad_de_Acci;
+
+--Triggers Comunidad_favorita
+create or replace trigger antesInsertComunidad_fav
+Before insert
+ON Comunidad_favorita
+for each row
+BEGIN
+    :new.fec_creacion:= sysdate;
+    :new.usuario_creacion:= USER;
+END antesInsertComunidad_fav;
+
+create or replace trigger antesUpdateComunidad_fav
+Before update
+ON Comunidad_favorita
+for each row
+BEGIN
+    :new.fec_ultima_modificacion:= sysdate;
+    :new.usuario_ultima_modificacion:= USER;
+END antesUpdateComunidad_fav;
+
+--Triggers Corte_Servicio
+create or replace trigger antesInsertCorte_Servicio
+Before insert
+ON Corte_Servicio
+for each row
+BEGIN
+    :new.fec_creacion:= sysdate;
+    :new.usuario_creacion:= USER;
+END antesInsertCorte_Servicio;
+
+create or replace trigger antesUpdateCorte_Servicio
+Before update
+ON Corte_Servicio
+for each row
+BEGIN
+    :new.fec_ultima_modificacion:= sysdate;
+    :new.usuario_ultima_modificacion:= USER;
+END antesUpdateCorte_Servicio;
+
+--Triggers Delito
+create or replace trigger antesInsertDelito
+Before insert
+ON Delito
+for each row
+BEGIN
+    :new.fec_creacion:= sysdate;
+    :new.usuario_creacion:= USER;
+END antesInsertDelito;
+
+create or replace trigger antesUpdateDelito
+Before update
+ON Delito
+for each row
+BEGIN
+    :new.fec_ultima_modificacion:= sysdate;
+    :new.usuario_ultima_modificacion:= USER;
+END antesUpdateDelito;
+
+--Triggers Distrito
+create or replace trigger antesInsertDistrito
+Before insert
+ON Distrito
+for each row
+BEGIN
+    :new.fec_creacion:= sysdate;
+    :new.usuario_creacion:= USER;
+END antesInsertDistrito;
+
+create or replace trigger antesUpdateDistrito
+Before update
+ON Distrito
+for each row
+BEGIN
+    :new.fec_ultima_modificacion:= sysdate;
+    :new.usuario_ultima_modificacion:= USER;
+END antesUpdateDistrito;
+
+--Triggers Genero
+create or replace trigger antesInsertGenero
+Before insert
+ON Genero
+for each row
+BEGIN
+    :new.fec_creacion:= sysdate;
+    :new.usuario_creacion:= USER;
+END antesInsertGenero;
+
+create or replace trigger antesUpdateGenero
+Before update
+ON Genero
+for each row
+BEGIN
+    :new.fec_ultima_modificacion:= sysdate;
+    :new.usuario_ultima_modificacion:= USER;
+END antesUpdateGenero;
+
+--Triggers Identificacion
+create or replace trigger antesInsertIdentificacion
+Before insert
+ON Identificacion
+for each row
+BEGIN
+    :new.fec_creacion:= sysdate;
+    :new.usuario_creacion:= USER;
+END antesInsertIdentificacion;
+
+create or replace trigger antesUpdateIdentificacion
+Before update
+ON Identificacion
+for each row
+BEGIN
+    :new.fec_ultima_modificacion:= sysdate;
+    :new.usuario_ultima_modificacion:= USER;
+END antesUpdateIdentificacion;
+
+--Triggers Nacionalidad
+create or replace trigger antesInsertNacionalidad
+Before insert
+ON Nacionalidad
+for each row
+BEGIN
+    :new.fec_creacion:= sysdate;
+    :new.usuario_creacion:= USER;
+END antesInsertNacionalidad;
+
+create or replace trigger antesUpdateNacionalidad
+Before update
+ON Nacionalidad
+for each row
+BEGIN
+    :new.fec_ultima_modificacion:= sysdate;
+    :new.usuario_ultima_modificacion:= USER;
+END antesUpdateNacionalidad;
+
+--Triggers NivelAcceso
+create or replace trigger antesInsertNivelAcceso
+Before insert
+ON NivelAcceso
+for each row
+BEGIN
+    :new.fec_creacion:= sysdate;
+    :new.usuario_creacion:= USER;
+END antesInsertNacionalidad;
+
+create or replace trigger antesUpdateNivelAcceso
+Before update
+ON NivelAcceso
+for each row
+BEGIN
+    :new.fec_ultima_modificacion:= sysdate;
+    :new.usuario_ultima_modificacion:= USER;
+END antesUpdateNivelAcceso;
+
+--Triggers Nota
+create or replace trigger antesInsertNota
+Before insert
+ON Nota
+for each row
+BEGIN
+    :new.fec_creacion:= sysdate;
+    :new.usuario_creacion:= USER;
+END antesInsertNota;
+
+create or replace trigger antesUpdateNota
+Before update
+ON Nota
+for each row
+BEGIN
+    :new.fec_ultima_modificacion:= sysdate;
+    :new.usuario_ultima_modificacion:= USER;
+END antesUpdateNota;
+
+
+--Triggers Noticia
+create or replace trigger antesInsertNoticia
+Before insert
+ON Noticia
+for each row
+BEGIN
+    :new.fec_creacion:= sysdate;
+    :new.usuario_creacion:= USER;
+END antesInsertNoticia;
+
+create or replace trigger antesUpdateNoticia
+Before update
+ON Noticia
+for each row
+BEGIN
+    :new.fec_ultima_modificacion:= sysdate;
+    :new.usuario_ultima_modificacion:= USER;
+END antesUpdateNoticia;
+
+
+--Triggers Pais
+create or replace trigger antesInsertPais
+Before insert
+ON Pais
+for each row
+BEGIN
+    :new.fec_creacion:= sysdate;
+    :new.usuario_creacion:= USER;
+END antesInsertPais;
+
+create or replace trigger antesUpdatePais
+Before update
+ON Pais
+for each row
+BEGIN
+    :new.fec_ultima_modificacion:= sysdate;
+    :new.usuario_ultima_modificacion:= USER;
+END antesUpdatePais;
+
+
+--Triggers Persona
+create or replace trigger antesInsertPersona
+Before insert
+ON Persona
+for each row
+BEGIN
+    :new.fec_creacion:= sysdate;
+    :new.usuario_creacion:= USER;
+END antesInsertPersona;
+
+create or replace trigger antesUpdatePersona
+Before update
+ON Persona
+for each row
+BEGIN
+    :new.fec_ultima_modificacion:= sysdate;
+    :new.usuario_ultima_modificacion:= USER;
+END antesUpdatePersona;
+
+
+--Triggers Provincia
+create or replace trigger antesInsertProvincia
+Before insert
+ON Provincia
+for each row
+BEGIN
+    :new.fec_creacion:= sysdate;
+    :new.usuario_creacion:= USER;
+END antesInsertProvincia;
+
+create or replace trigger antesUpdateProvincia
+Before update
+ON Provincia
+for each row
+BEGIN
+    :new.fec_ultima_modificacion:= sysdate;
+    :new.usuario_ultima_modificacion:= USER;
+END antesUpdateProvincia;
+
+--Triggers Servicio
+create or replace trigger antesInsertServicio
+Before insert
+ON Servicio
+for each row
+BEGIN
+    :new.fec_creacion:= sysdate;
+    :new.usuario_creacion:= USER;
+END antesInsertServicio;
+
+create or replace trigger antesUpdateServicio
+Before update
+ON Servicio
+for each row
+BEGIN
+    :new.fec_ultima_modificacion:= sysdate;
+    :new.usuario_ultima_modificacion:= USER;
+END antesUpdateServicio;
+
+
+--Triggers Tipo_Corte_Servicio
+create or replace trigger antesInsertTipo_Corte_Serv
+Before insert
+ON Tipo_Corte_Servicio
+for each row
+BEGIN
+    :new.fec_creacion:= sysdate;
+    :new.usuario_creacion:= USER;
+END antesInsertTipo_Corte_Serv;
+
+create or replace trigger antesUpdateTipo_Corte_Serv
+Before update
+ON Tipo_Corte_Servicio
+for each row
+BEGIN
+    :new.fec_ultima_modificacion:= sysdate;
+    :new.usuario_ultima_modificacion:= USER;
+END antesUpdateTipo_Corte_Serv;
+
+
+--Triggers Tipo_Delito
+create or replace trigger antesInsertTipo_Delito
+Before insert
+ON Tipo_Delito
+for each row
+BEGIN
+    :new.fec_creacion:= sysdate;
+    :new.usuario_creacion:= USER;
+END antesInsertTipo_Delito;
+
+create or replace trigger antesUpdateTipo_Delito
+Before update
+ON Tipo_Delito
+for each row
+BEGIN
+    :new.fec_ultima_modificacion:= sysdate;
+    :new.usuario_ultima_modificacion:= USER;
+END antesUpdateTipo_Delito;
+
+--Triggers Usuario
+create or replace trigger antesInsertUsuario
+Before insert
+ON Usuario
+for each row
+BEGIN
+    :new.fec_creacion:= sysdate;
+    :new.usuario_creacion:= USER;
+END antesInsertUsuario;
+
+create or replace trigger antesUpdateUsuario
+Before update
+ON Usuario
+for each row
+BEGIN
+    :new.fec_ultima_modificacion:= sysdate;
+    :new.usuario_ultima_modificacion:= USER;
+END antesUpdateUsuario;
