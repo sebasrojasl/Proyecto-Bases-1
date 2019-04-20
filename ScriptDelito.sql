@@ -1,6 +1,7 @@
 --Se crea la tabla delito con sus atributo, pk y fk respectivas.
 Create table Delito(
     id_Delito number(10),
+    id_agresor number(10),
     afectado number(10),
     Tipo_Arma varchar2(15),    
     id_Nota number(10),
@@ -10,7 +11,7 @@ Create table Delito(
       using index
       tablespace ge_ind pctfree 20
       storage (initial 10K NEXT 10K pctincrease 0),
-    --A partir de aquí es auditoría
+    --A partir de aquÃ­ es auditorÃ­a
     fec_creacion DATE constraint delito_fec_creacion_nn not null,
 	usuario_creacion VARCHAR2(10) constraint delito_usuario_creacion_nn not null, 
 	fec_ultima_modificacion DATE,
@@ -37,6 +38,11 @@ ALTER TABLE delito
     ADD CONSTRAINT fk_delito_4 foreign key (id_Clasif)
     REFERENCES Clasificacion_delito(id_Clasif_delito);
 
+--Se le agrega la fk de id_agresor a delito
+ALTER TABLE delito
+    ADD CONSTRAINT fk_delito_5 foreign key (id_agresor)
+    REFERENCES agresor(id_agresor);
+    
 --Se crea secuencia para el id de delito
 CREATE SEQUENCE s_delito
   MINVALUE 0
