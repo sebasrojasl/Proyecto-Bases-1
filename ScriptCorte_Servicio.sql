@@ -8,12 +8,21 @@ Create table Corte_Servicio(
       using index
       tablespace ge_ind pctfree 20
       storage (initial 10K NEXT 10K pctincrease 0),
-    --A partir de aquí es auditoría
+    --A partir de aquÃ­ es auditorÃ­a
     fec_creacion DATE constraint Corte_Serv_fec_creacion_nn not null,
 	usuario_creacion VARCHAR2(10) constraint Corte_Serv_usuario_creacion_nn not null, 
 	fec_ultima_modificacion DATE,
 	usuario_ultima_modificacion VARCHAR2(10)
 );
+
+
+CREATE SEQUENCE  S_Corte_Servicio
+MINVALUE 1 
+MAXVALUE 1000000 
+INCREMENT BY 1 
+START WITH 1 
+NOCACHE
+NOCYCLE;
 
 --Se le agrega la fk de id_Tipo_Corte_Serv a Corte_Servicio
 ALTER TABLE Corte_Servicio
