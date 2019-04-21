@@ -1,0 +1,43 @@
+CREATE TABLE noticia(
+--Tabla donde se almacenan las noticias publicadas por los usuarios
+    id_noticia          NUMBER(10),
+    direccion           VARCHAR2(150) CONSTRAINT noticia_direccion_nn NOT NULL,
+    fecha               DATE CONSTRAINT noticia_fecha_nn NOT NULL,
+    id_comunidad        NUMBER(10),
+    id_clasif_noticia   NUMBER(10),
+    id_usiario          NUMBER(10),
+    Fec_creacion        DATE CONSTRAINT noticia_fec_creacion_nn NOT NULL,
+    Usuario_creacion    VARCHAR2(10) CONSTRAINT noticia_usuario_creacion_nn NOT NULL,
+    Fec_ultima_modificacion DATE,
+    Usuario_ultima_modificacion VARCHAR2(10)
+);
+
+CREATE SEQUENCE S_noticia
+--Secuancia para la PK de la tabla noticia
+START WITH 1
+INCREMENT BY 1
+MINVALUE 0
+MAXVALUE 10000000
+NOCACHE
+NOCYCLE;
+
+ALTER TABLE noticia
+--Agrega el constraint de PK a la tabla noticia.
+    ADD CONSTRAINT pk_noticia PRIMARY KEY (id_noticia)
+    USING INDEX TABLESPACE ge_Ind PCTFREE 20
+    STORAGE (INITIAL 10k NEXT 10k PCTINCREASE 0);
+
+ALTER TABLE noticia
+--Agrega el constraint de FK a la tabla noticia que referencia a una comunidad.
+    ADD CONSTRAINT fk_noticia_comunidad FOREIGN KEY (id_comunidad)
+    REFERENCES comunidad(id_comunidad);
+
+ALTER TABLE noticia
+--Agrega el constraint de FK a la tabla noticia que referencia a una clasificacion de noticia.
+    ADD CONSTRAINT fk_noticia_clasif_noticia FOREIGN KEY (id_clasif_noticia)
+    REFERENCES clasificacionnoticia(id_clasif_noticia);
+
+ALTER TABLE noticia
+--Agrega el constraint de FK a la tabla noticia que referencia a un usuario
+    ADD CONSTRAINT fk_noticia_usuario FOREIGN KEY (id_usuario)
+    REFERENCES usuario(id_usuario);
