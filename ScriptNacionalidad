@@ -1,7 +1,7 @@
 CREATE TABLE nacionalidad(
     id_nacionalidad             NUMBER(10),
     nombre                      VARCHAR2(20) CONSTRAINT nacionalidad_nombre_nn NOT NULL,
-    id_persona                  NUMBER(10)
+    id_persona                  NUMBER(10),
     Fec_creacion                    DATE CONSTRAINT nacionalidad_Fec_creacion_nn NOT NULL,
     Usuario_creacion                VARCHAR2(10) CONSTRAINT nacionalidad_Usuario_creacion_nn NOT NULL,
     Fec_ultima_modificacion         DATE,
