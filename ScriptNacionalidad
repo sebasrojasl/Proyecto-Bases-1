@@ -1,23 +1,35 @@
 CREATE TABLE nacionalidad(
-    id_nacionalidad     NUMBER(10),
-    nombre              VARCHAR2(20) CONSTRAINT nacionalidad_nombre_nn NOT NULL,
-    id_persona          NUMBER(10)
+    id_nacionalidad             NUMBER(10),
+    nombre                      VARCHAR2(20) CONSTRAINT nacionalidad_nombre_nn NOT NULL,
+    id_persona                  NUMBER(10)
+    Fec_creacion                    DATE CONSTRAINT nacionalidad_Fec_creacion_nn NOT NULL,
+    Usuario_creacion                VARCHAR2(10) CONSTRAINT nacionalidad_Usuario_creacion_nn NOT NULL,
+    Fec_ultima_modificacion         DATE,
+    Usuario_ultima_modificacion     VARCHAR2(10)
 );
 
-CREATE SEQUENCE s_nacionalidad
-START WITH 1
-INCREMENT BY 1
-MINVALUE 0
-MAXVALUE 10000000
+---Crea la tabla de la nacionalidad
+CREATE SEQUENCE  S_nacionalidad 
+MINVALUE 1 
+MAXVALUE 1000000 
+INCREMENT BY 1 
+START WITH 1 
 NOCACHE
 NOCYCLE;
 
+
+
+---Crea la secuencia de id_nacionalidad
 ALTER TABLE nacionalidad
     ADD CONSTRAINT pk_nacionalidad PRIMARY KEY (id_nacionalidad)
     USING INDEX TABLESPACE ge_Ind PCTFREE 20
     STORAGE (INITIAL 10k NEXT 10k PCTINCREASE 0);
-    
+
+
+---Crea la llave primaria de nacionalidad
+
 ALTER TABLE nacionalidad
     ADD CONSTRAINT fk_nacionalidad_persona FOREIGN KEY (id_persona)
     REFERENCES persona(id_persona);
-    
+
+---Crea la llave foranea para la tabla persona y tabla nacionalidad
