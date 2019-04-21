@@ -8,7 +8,6 @@ CREATE TABLE Persona(
     correo              VARCHAR2(40) CONSTRAINT persona_correo_nn NOT NULL,
                         CONSTRAINT persona_correo_uk UNIQUE(correo),
     id_genero           NUMBER(10),
-    id_comunidad        NUMBER(10),
     Fec_creacion        DATE CONSTRAINT persona_fechacreacion_nn NOT NULL,
     Usuario_creacion    VARCHAR2(10) CONSTRAINT persona_usuariocreacion_nn NOT NULL,
     Fec_ultima_modificacion DATE,
@@ -31,7 +30,3 @@ ALTER TABLE persona
 ALTER TABLE persona
     ADD CONSTRAINT fk_persona_genero FOREIGN KEY (id_genero) 
     REFERENCES genero(id_genero);
-
-ALTER TABLE persona
-    ADD CONSTRAINT fk_persona_comunidad FOREIGN KEY (id_comunidad)
-    REFERENCES comunidad(id_comunidad);
