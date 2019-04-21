@@ -2,11 +2,12 @@ CREATE TABLE servicio_x_comunidad(
 --Tabla que representa relacion de N a N entre servicio y comunidad
     id_servicio         NUMBER(10),
     id_comunidad        NUMBER(10),
-    pagina_web          VARCHAR2(30) CONSTRAINT serv_x_comu_paginaweb_uk UNIQUE(pagina_web),
-    telefono            VARCHAR2(15) CONSTRAINT serv_x_comu_telefono_nn NOT NULL,
-    direccion           VARCHAR2(150) CONSTRAINT serv_x_comu_direccion_nn NOT NULL,
-    Fec_creacion        DATE CONSTRAINT serv_x_comu_fec_creacion_nn NOT NULL,
-    Usuario_creacion    VARCHAR2(10) serv_x_comu_usuario_creacion_nn NOT NULL,
+    pagina_web          VARCHAR2(30) CONSTRAINT servxcom_pagweb_nn NOT NULL,
+                        CONSTRAINT servxcom_pagweb_uk UNIQUE(pagina_web),
+    telefono            VARCHAR2(15) CONSTRAINT servxcom_telefono_nn NOT NULL,
+    direccion           VARCHAR2(150) CONSTRAINT servxcom_direccion_nn NOT NULL,
+    Fec_creacion        DATE CONSTRAINT servxcom_fec_creacion_nn NOT NULL,
+    Usuario_creacion    VARCHAR2(10) CONSTRAINT servxcom_usuar_creac_nn NOT NULL,
     Fec_ultima_modificacion DATE,
     Usuario_ultima_modificacion VARCHAR2(10)
 );
@@ -22,16 +23,16 @@ NOCYCLE;
 
 ALTER TABLE servicio_x_comunidad
 --Crea la llave primaria de la tabla servicio_x_comunidad
-    ADD CONSTRAINT pk_servicio_x_comunidad PRIMARY KEY (id_servicio, id_comunidad)
+    ADD CONSTRAINT pk_servicxcomun PRIMARY KEY (id_servicio, id_comunidad)
     USING INDEX TABLESPACE ge_Ind PCTFREE 20
     STORAGE (INITIAL 10k NEXT 10k PCTINCREASE 0);
 
 ALTER TABLE servicio_x_comunidad
 --Llave foranea de servicio_x_comunidad que referencia a un servicio
-    ADD CONSTRAINT fk_serv_x_comu_servicio FOREIGN KEY (id_servicio)
+    ADD CONSTRAINT fk_servxcomu_servic FOREIGN KEY (id_servicio)
     REFERENCES servicio(id_servicio);
 
 ALTER TABLE servicio_x_comunidad
 --Llave foranea de servicio_x_comunidad que referencia a una comunidad
-    ADD CONSTRAINT fk_serv_x_comu_comunidad FOREIGN KEY (id_comunidad)
-    REFERENCES comunidad(id_comunidad);
+    ADD CONSTRAINT fk_servxcom_comun FOREIGN KEY (id_comunidad)
+REFERENCES comunidad(id_comunidad);
