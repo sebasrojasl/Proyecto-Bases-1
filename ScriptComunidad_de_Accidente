@@ -23,4 +23,4 @@ ALTER TABLE comunidad_de_accidente
 ALTER TABLE comunidad_de_accidente
 --Agrega el constraint para la FK en la tabla comunidad_de_accidente que referencia a un accidente
     ADD CONSTRAINT fk_comu_accid_accidente FOREIGN KEY (id_accidente)
-    REFERENCES accidente_transito(id_accidente);
+    REFERENCES accidentetransito(id_accidentetransito);
