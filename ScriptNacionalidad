@@ -1,0 +1,23 @@
+CREATE TABLE nacionalidad(
+    id_nacionalidad     NUMBER(10),
+    nombre              VARCHAR2(20) CONSTRAINT nacionalidad_nombre_nn NOT NULL,
+    id_persona          NUMBER(10)
+);
+
+CREATE SEQUENCE s_nacionalidad
+START WITH 1
+INCREMENT BY 1
+MINVALUE 0
+MAXVALUE 10000000
+NOCACHE
+NOCYCLE;
+
+ALTER TABLE nacionalidad
+    ADD CONSTRAINT pk_nacionalidad PRIMARY KEY (id_nacionalidad)
+    USING INDEX TABLESPACE ge_Ind PCTFREE 20
+    STORAGE (INITIAL 10k NEXT 10k PCTINCREASE 0);
+    
+ALTER TABLE nacionalidad
+    ADD CONSTRAINT fk_nacionalidad_persona FOREIGN KEY (id_persona)
+    REFERENCES persona(id_persona);
+    
