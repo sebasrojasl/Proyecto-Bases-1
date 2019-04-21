@@ -1,0 +1,26 @@
+CREATE TABLE comunidad_de_accidente(
+--Tabla que representa una relacion de N a N entre comunidad y accidente
+--para registrar los accidentes que ocurren en las comunidades
+    id_comunidad        NUMBER(10),
+    id_accidente        NUMBER(10),
+    Fec_creacion        DATE CONSTRAINT comu_accid_fec_creacion_nn NOT NULL,
+    Usuario_creacion    VARCHAR2(10) CONSTRAINT comu_accid_usuario_creacion_nn NOT NULL,
+    Fec_ultima_modificacion DATE,
+    Usuario_ultima_modificacion VARCHAR2(10)
+);
+
+ALTER TABLE comunidad_de_accidente
+--Agrega el constraint para la PK compuesta en la tabla comunidad_de_accidente
+    ADD CONSTRAINT pk_comunidad_de_accidente PRIMARY KEY(id_comunidad, id_accidente)
+    USING INDEX TABLESPACE ge_Ind PCTFREE 20
+    STORAGE (INITIAL 10k NEXT 10k PCTINCREASE 0);
+
+ALTER TABLE comunidad_de_accidente
+--Agrega el constraint para la FK en la tabla comunidad_de_accidente que referencia a una comunidad
+    ADD CONSTRAINT fk_comu_accid_comunidad FOREIGN KEY (id_comunidad)
+    REFERENCES comunidad(id_comunidad);
+
+ALTER TABLE comunidad_de_accidente
+--Agrega el constraint para la FK en la tabla comunidad_de_accidente que referencia a un accidente
+    ADD CONSTRAINT fk_comu_accid_accidente FOREIGN KEY (id_accidente)
+    REFERENCES accidente_transito(id_accidente);
