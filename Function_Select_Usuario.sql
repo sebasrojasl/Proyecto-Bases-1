@@ -9,8 +9,9 @@ AS
       OPEN curUsuario
       FOR SELECT * 
       FROM Usuario
-      WHERE pId_Usuario = id_Usuario;
+      WHERE id_Usuario = pId_Usuario;
       RETURN curUsuario;
+      CLOSE curUsuario;
   EXCEPTION
   --En caso de algún error, aquí se hace un catch del mismo y se envía al dbms_output para desde ahí leerlo en Java
        WHEN NO_DATA_FOUND THEN 
