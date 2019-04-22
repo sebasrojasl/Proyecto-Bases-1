@@ -1,7 +1,6 @@
 CREATE TABLE nacionalidad(
     id_nacionalidad             NUMBER(10),
     nombre                      VARCHAR2(20) CONSTRAINT nacionalidad_nombre_nn NOT NULL,
-    id_persona                  NUMBER(10),
     Fec_creacion                    DATE CONSTRAINT nacion_Fec_creacion_nn NOT NULL,
     Usuario_creacion                VARCHAR2(10) CONSTRAINT nacion_Usuario_creacion_nn NOT NULL,
     Fec_ultima_modificacion         DATE,
@@ -27,9 +26,3 @@ ALTER TABLE nacionalidad
 
 
 ---Crea la llave primaria de nacionalidad
-
-ALTER TABLE nacionalidad
-    ADD CONSTRAINT fk_nacionalidad_persona FOREIGN KEY (id_persona)
-    REFERENCES persona(id_persona);
-
----Crea la llave foranea para la tabla persona y tabla nacionalidad
