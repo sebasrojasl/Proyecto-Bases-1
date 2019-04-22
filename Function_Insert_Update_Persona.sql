@@ -1,12 +1,11 @@
 --Procedimiento que inserta un dato en la tabla persona por primera vez, con todos los datos necesarios
 create or replace procedure insertPersona(vcNombre in persona.nombre%type, vcApellidos in persona.apellidos%type, vcNacimiento in persona.nacimiento%type, 
-vcFoto in persona.foto%type, vcDireccion in persona.direccion%type, vcCorreo in persona.correo%type, vcGenero in persona.id_genero%type, 
-vcComunidad in persona.id_comunidad%type)is 
+vcFoto in persona.foto%type, vcDireccion in persona.direccion%type, vcCorreo in persona.correo%type, vcGenero in persona.id_genero%type)is 
     BEGIN
         SAVEPOINT sp_safe;
         --Punto de seguridad por si pasa un error
-        insert into persona(id_persona, nombre, apellidos, nacimiento, foto, direccion, correo, id_genero, id_comunidad)
-        VALUES(s_persona.nextval, vcNombre, vcApellidos, vcNacimiento, vcFoto, vcDireccion, vcCorreo, vcGenero, vcComunidad);
+        insert into persona(id_persona, nombre, apellidos, nacimiento, foto, direccion, correo, id_genero)
+        VALUES(s_persona.nextval, vcNombre, vcApellidos, vcNacimiento, vcFoto, vcDireccion, vcCorreo, vcGenero);
         COMMIT;
     EXCEPTION
     --En caso de algún error, aquí se hace un catch del mismo y se envía al dbms_output para desde ahí leerlo en Java
@@ -29,7 +28,7 @@ vcComunidad in persona.id_comunidad%type)is
 --Procedimiento que se encarga de actualizar cierto dato de la tabla persona dependiendo del id_Persona ingresado
 create or replace procedure updatePersona(vcId_persona in persona.id_persona%type, vcNombre in persona.nombre%type, 
 vcApellidos in persona.apellidos%type, vcNacimiento in persona.nacimiento%type, vcFoto in persona.foto%type, vcDireccion in persona.direccion%type,
-vcCorreo in persona.correo%type, vcGenero in persona.id_genero%type, vcComunidad in persona.id_comunidad%type)is 
+vcCorreo in persona.correo%type, vcGenero in persona.id_genero%type)is 
     BEGIN
         savepoint sp_safe;
         --Punto de seguridad por si pasa un error
@@ -40,8 +39,7 @@ vcCorreo in persona.correo%type, vcGenero in persona.id_genero%type, vcComunidad
             foto = NVL(vcFoto, foto), 
             direccion = NVL(vcDireccion, direccion), 
             correo =  NVL(vcCorreo, correo), 
-            id_genero = NVL(vcGenero, id_genero), 
-            id_comunidad = NVL(vcComunidad, id_comunidad)
+            id_genero = NVL(vcGenero, id_genero)
         where id_persona = vcId_persona;
         COMMIT;
     EXCEPTION
