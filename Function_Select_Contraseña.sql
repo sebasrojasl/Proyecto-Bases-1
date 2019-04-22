@@ -8,7 +8,7 @@ create or replace function getClave (pNombre_Usuario in usuario.nombre_usuario%t
         select clave
         into vcClave
         from usuario
-        where nombre_usuario = NVL(pNombre_Usuario, nombre_usuario);
+        where nombre_usuario = pNombre_Usuario;
         return(vcClave);
     EXCEPTION
     --En caso de algún error, aquí se hace un catch del mismo y se envía al dbms_output para desde ahí leerlo en Java
